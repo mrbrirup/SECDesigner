@@ -1,0 +1,6 @@
+[submodule "mrbrAssembly"]
+	path = mrbrAssembly
+	url = https://github.com/mrbrirup/mrbrAssembly.git
+[submodule "canvasUI"]
+	path = canvasUI
+	url = https://github.com/mrbrirup/canvasUI.git
