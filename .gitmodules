@@ -4,3 +4,6 @@
 [submodule "canvasUI"]
 	path = canvasUI
 	url = https://github.com/mrbrirup/canvasUI.git
+[submodule "httpServer"]
+	path = httpServer
+	url = https://github.com/mrbrirup/httpServer.git
