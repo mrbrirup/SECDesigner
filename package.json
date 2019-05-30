@@ -1,0 +1,19 @@
+{
+  "name": "secdesigner",
+  "version": "1.0.0",
+  "description": "Saga Execution Controller Designer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrbrirup/SECDesigner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrbrirup/SECDesigner/issues"
+  },
+  "homepage": "https://github.com/mrbrirup/SECDesigner#readme"
+}
