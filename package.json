@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/mrbrirup/SECDesigner/issues"
   },
-  "homepage": "https://github.com/mrbrirup/SECDesigner#readme"
+  "homepage": "https://github.com/mrbrirup/SECDesigner#readme",
+  "devDependencies": {
+    "fs-extra": "^8.0.1",
+    "terser": "^4.0.0"
+  }
 }
