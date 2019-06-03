@@ -23,3 +23,12 @@ fs.copySync(source, destination, {}, function (err) {
     }
     console.log('Copy completed!')
 });
+var source = 'canvasUI'
+var destination = 'dist\\canvasUI'
+fs.copySync(source, destination, {}, function (err) {
+    if (err) {
+        console.log('An error occured while copying the folder.')
+        return console.error(err)
+    }
+    console.log('Copy completed!')
+});
