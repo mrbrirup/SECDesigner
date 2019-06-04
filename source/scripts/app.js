@@ -17,7 +17,7 @@
                 ])
         })
         .then(result => {
-            let desktop = new CanvasUI.Controls.Desktop({name:"desktop_5", size:[1,2,4,8]})
+            let desktop = new CanvasUI.Controls.Desktop({name:"desktop_6", size:[1,2,4,8]})
             console.log(desktop)
         });
 })()
