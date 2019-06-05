@@ -1,0 +1,9 @@
+html,body, canvas{
+    margin:0;
+    padding: 0;
+    border:0;
+}
+html,body{
+    display: flex ;
+    height: 100% ;
+}

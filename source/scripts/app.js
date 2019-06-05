@@ -12,12 +12,19 @@
                 fileTypes = Mrbr.System.ManifestEntry.FileTypes;
             return Mrbr.System.Assembly.loadManifest(
                 [
-                    new Mrbr.System.ManifestEntry(Mrbr.System.ManifestEntry.FileTypes.Script, "scripts/pixi.js"),
-                    new entry(fileTypes.Class, "CanvasUI.Controls.Desktop")
+                    new entry(Mrbr.System.ManifestEntry.FileTypes.Script, "scripts/pixi.js"),
+                    new entry(fileTypes.Class, "CanvasUI.Controls.Desktop"),
+                    new entry(fileTypes.Class, "CanvasUI.Controls.WindowControl")
                 ])
         })
         .then(result => {
-            let desktop = new CanvasUI.Controls.Desktop({name:"desktop_6", size:[1,2,4,8]})
-            console.log(desktop)
+            var ctrlWin = CanvasUI.Controls.WindowControl;
+            let desktop = new CanvasUI.Controls.Desktop({
+                name:"desktop", size:[0,0,ctrlWin.width,ctrlWin.height], 
+                pixi:{
+                    backgroundColour: 0x0000FF,
+                    transparent: false
+                }
+            })
         });
 })()
