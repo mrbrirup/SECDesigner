@@ -65,23 +65,41 @@ Mrbr.System.Assembly = class {
         if (loader.hasOwnProperty(url)) {
             return loader[url].promise;
         }
-        const xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("GET", url, true);
-        xmlHttp.send("");
-        let prm = new Promise(function (resolve, reject) {
-            xmlHttp.onreadystatechange = function () {
-                if (xmlHttp.readyState === 4) {
-                    if (xmlHttp.status >= 200 && xmlHttp.status < 300) {
-                        loader[url].result = xmlHttp.responseText;
-                        resolve(xmlHttp.responseText);
-                    } else {
-                        reject();
+        else {
+
+            let resolver,
+                rejecter,
+                prm = new Promise((resolve, reject) => {
+                    resolver = resolve;
+                    rejecter = reject;
+                });
+            if (fetch) {
+                fetch(url, {
+                    method: 'GET'
+                })
+                    .then(response => response.text().then(text => {
+                        loader[url].result = text;
+                        resolver(text);
+                    }))
+            }
+            else {
+                const xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("GET", url, true);
+                xmlHttp.send("");
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState === 4) {
+                        if (xmlHttp.status >= 200 && xmlHttp.status < 300) {
+                            loader[url].result = xmlHttp.responseText;
+                            resolver(xmlHttp.responseText);
+                        } else {
+                            rejecter();
+                        }
                     }
-                }
-            };
-        })
-        loader[url] = { promise: prm, result: undefined };
-        return prm;
+                };
+            }
+            loader[url] = { promise: prm, result: undefined };
+            return prm;
+        }
     }
     /**
      * Property name added to each loaded class returns full namespaced object name
@@ -433,19 +451,19 @@ Mrbr.System.Assembly = class {
             if (Object.getOwnPropertyDescriptor(classType.prototype, "base") === undefined) {
                 Object.defineProperty(classType.prototype, "base", {
                     value: function (...args) {
-                        if(args === undefined || args.length === 0 ){
+                        if (args === undefined || args.length === 0) {
                             args = [];
-                            args[0]= {}
-                        } 
+                            args[0] = {}
+                        }
                         args[0].called = args[0].called || [];
                         const self = this,
                             called = args[0].called,
                             keys = Object.keys(self.constructor.prototype),
                             keysCount = keys.length;
-                            called.push(classType.prototype.mrbrAssemblyTypeName.replace(/\./g, "_") + "_ctor");
+                        called.push(classType.prototype.mrbrAssemblyTypeName.replace(/\./g, "_") + "_ctor");
                         for (let keyCounter = 0; keyCounter < keysCount; keyCounter++) {
                             let property = keys[keyCounter];
-                            if (called.includes(property) || !property.endsWith("_ctor") || property === "ctor") {                             
+                            if (called.includes(property) || !property.endsWith("_ctor") || property === "ctor") {
                                 continue;
                             }
                             called.push(property);
