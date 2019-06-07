@@ -87,16 +87,14 @@ Mrbr.System.Assembly = class {
                 xmlHttp.open("GET", url, true);
                 xmlHttp.send("");
                 xmlHttp.onreadystatechange = function () {
-                    if (xmlHttp.readyState === 4) {
-                        if (xmlHttp.status >= 200 && xmlHttp.status < 300) {
-                            loader[url].result = xmlHttp.responseText;
-                            resolver(xmlHttp.responseText);
-                        } else {
-                            rejecter();
-                        }
+                    if (xmlHttp.readyState === 4 && (xmlHttp.status >= 200 && xmlHttp.status < 300)) {
+                        loader[url].result = xmlHttp.responseText;
+                        resolver(xmlHttp.responseText);
+                    } else {
+                        rejecter();
                     }
-                };
-            }
+                }
+            };
             loader[url] = { promise: prm, result: undefined };
             return prm;
         }
