@@ -28,9 +28,13 @@
                 }
             })
             const form1 = new CanvasUI.Controls.Forms.Form({name:"form_1"});            
-            console.log(form1.name, form1.size, form1.position)
             form1.size = new Mrbr.Geometry.Size(640,480);
             form1.position = new Mrbr.Geometry.Point(150,300);
-            console.log(form1.name, form1.size, form1.position)
+            const form2 = new CanvasUI.Controls.Forms.Form({name:"form_2"});            
+            form2.size = new Mrbr.Geometry.Size(1640,1480);
+            form2.position = new Mrbr.Geometry.Point(1150,1300);
+            console.log(form2);
+            console.log(form1);
+            console.log(form1.bases())
         });
 })()
