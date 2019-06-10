@@ -25,7 +25,7 @@
                     name: "desktop",
                     x: 0, y: 0, width: ctrlWin.width, height: ctrlWin.height,
                     pixi: {
-                        backgroundColour: 0x0000FF,
+                        backgroundColour: 0x000000,
                         transparent: false
                     }
                 })
